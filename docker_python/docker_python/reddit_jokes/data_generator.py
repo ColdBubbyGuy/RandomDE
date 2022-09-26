@@ -5,6 +5,8 @@ import datetime
 # https://www.conduktor.io/kafka/kafka-topics-cli-tutorial#How-to-list-Kafka-Topics?-1 working with kafka commands in
 # command line
 
+# docker exec -it kafka /bin/sh
+
 REDDIT = praw.Reddit(client_id='63mLLMBEhIAd2fKmw-LxFA',
                      client_secret='LGMrgAxwoJRLX68S6rZ9UKIVLDYwDg',
                      username='ColdBubbyGuy',

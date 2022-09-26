@@ -1,5 +1,5 @@
 import json
-from data_generator import generate_data
+from reddit_jokes.data_generator import generate_data
 from kafka.producer import KafkaProducer
 
 PRODUCE_FOR_TOPIC = "jokes_topic"
