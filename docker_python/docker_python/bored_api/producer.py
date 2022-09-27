@@ -63,9 +63,12 @@ def search_by_criteria(type_criteria, participants_criteria, price_criteria, acc
     ideas_copy = search_by_participants(participants_criteria, ideas_copy)
     ideas_copy = search_by_price(price_criteria, ideas_copy)
     ideas_copy = search_by_accessibility(accessibility_criteria, ideas_copy)
-    for idea in ideas_copy:
-        idea = dictionary_to_output(idea)
-        send_message(producer, idea)
+    if len(ideas_copy) == 0:
+        print("No ideas match your criteria!")
+    else:
+        for idea in ideas_copy:
+            idea = dictionary_to_output(idea)
+            send_message(producer, idea)
 
 
 def extract_type_criteria(type_criteria):
@@ -151,3 +154,18 @@ def generate_graph_by_idea_prices_or_accessibility(ideas, producer, criteria):
     elif criteria == CRITERIA_ACCESSIBILITY:
         plot_key_graph(ideas_dictionary, TITLE_ACCESSIBILITY, CRITERIA_ACCESSIBILITY, NUM_OF_IDEAS_STR)
     send_message(producer, ideas_dictionary)
+
+
+def generate_price_extremes_graph(ideas, producer):
+    min_values_dictionary = {"education": 1, "recreational": 1, "social": 1, "diy": 1, "charity": 1, "cooking": 1,
+                             "relaxation": 1, "music": 1, "busywork": 1}
+    max_values_dictionary = {"education": 0, "recreational": 0, "social": 0, "diy": 0, "charity": 0, "cooking": 0,
+                             "relaxation": 0, "music": 0, "busywork": 0}
+    for idea in ideas:
+        if float(min_values_dictionary[idea[CRITERIA_TYPE]]) > float(idea[CRITERIA_PRICE]):
+            min_values_dictionary[idea[CRITERIA_TYPE]] = float(idea[CRITERIA_PRICE])
+        if float(max_values_dictionary[idea[CRITERIA_TYPE]]) < float(idea[CRITERIA_PRICE]):
+            max_values_dictionary[idea[CRITERIA_TYPE]] = float(idea[CRITERIA_PRICE])
+    plot_price_subplots(min_values_dictionary, max_values_dictionary)
+    send_message(producer, min_values_dictionary)
+    send_message(producer, max_values_dictionary)

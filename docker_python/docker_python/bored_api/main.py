@@ -64,6 +64,7 @@ if __name__ == "__main__":
             print("1 - ideas grouped by type")
             print("2 - ideas grouped by price")
             print("3 - ideas grouped by accessibility")
+            print("4 - the least/most expensive idea sorted by type")
             graph_choice = input()
             if graph_choice == "1":
                 generate_graph_by_idea_types(ideas, producer)
@@ -71,6 +72,8 @@ if __name__ == "__main__":
                 generate_graph_by_idea_prices_or_accessibility(ideas, producer, "price")
             elif graph_choice == "3":
                 generate_graph_by_idea_prices_or_accessibility(ideas, producer, "accessibility")
+            elif graph_choice == "4":
+                generate_price_extremes_graph(ideas, producer)
         print("Do you want to use another function?")
         print("Y/n")
         decision = input()
