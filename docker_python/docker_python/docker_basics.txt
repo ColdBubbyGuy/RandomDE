@@ -1,0 +1,32 @@
+KOMANDNA LINIJA
+docker version, docker -v - verzija
+docker info - izmedju ostalog broj kontejnera, koliko ih radi/pauzirano/zaustavljeno
+docker _nesto_ --help
+docker login -u slucaju postojanja docker naloga
+docker images - sve slike
+docker pull - skidanje slika sa repozitorijuma
+docker rmi - sklanjanje slika
+docker ps - prikaz svih kontejnera
+docker run naziv_slike - u slucaju da nema lokalno, skida se slika sa neta
+docker run (--name naziv_kontejnera) -it naziv_slike - rad u interaktivnom rezimu
+docker pause/unpause id_container (ili name) - freezuje kontejner
+docker stop id_container (ili name) - zaustavlja rad kontejnera
+docker stats
+docker system df - disk usage
+docker system prune - sklanja nekoriscene podatke
+docker images -q  - id-evi slika
+docker images -f "neki-uslov" - filter po kome se gledaju slike
+docker inspect image_name - informacije o slici
+docker kill id/name_container - zaustavlja kontejner koji je ukljucen
+docker rm id/name_container - sklanja kontejner
+DOCKERFILE
+First instruction: FROM image_name
+ako ocemo praznu sliku: FROM scratch - prazna sliak
+(opciono MAINTAINER)
+RUN naziv_komande 
+docker build (-t naziv_slike) lokacija_docker_fajla
+https://github.com/wsargent/docker-cheat-sheet#dockerfile DOCKER CHEAT SHEET
+https://docs.docker.com/engine/reference/builder/#environment-replacement
+docker-compose config - vrsi se validacija fajla
+docker-compose up - pocetak rada fajla
+docker-compose down - brisanje
